@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <h1>Jobs</h1>
+            <h1>Posts</h1>
             <div class="pull-right">
                 <a href="/posts/create" class="btn btn-primary">Add New</a>
             </div>

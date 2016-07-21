@@ -2,16 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Role;
+use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Gate;
 
-class RolesController extends Controller
+class UsersController extends Controller
 {
-    
     public function __construct()
     {
         $this->middleware('admin');
@@ -24,9 +21,9 @@ class RolesController extends Controller
      */
     public function index()
     {
-        $roles = Role::all();
+        $users = User::all();
 
-        return view('roles.index', ['roles' => $roles]);
+        return view('users.index', ['users' => $users]);
     }
 
     /**
@@ -36,7 +33,7 @@ class RolesController extends Controller
      */
     public function create()
     {
-        return view('roles.create');
+        return view('users.create');
     }
 
     /**
@@ -51,9 +48,9 @@ class RolesController extends Controller
 
         $input['user_id'] = Auth::user()->id;
 
-        Role::create($input);
+        User::create($input);
 
-        return redirect('/roles');
+        return redirect('/users');
     }
 
     /**
@@ -64,9 +61,9 @@ class RolesController extends Controller
      */
     public function show($id)
     {
-        $role = Role::find($id);
+        $user = User::find($id);
 
-        return view('roles.show', ['role' => $role]);
+        return view('users.show', ['user' => $user]);
     }
 
     /**
@@ -77,9 +74,9 @@ class RolesController extends Controller
      */
     public function edit($id)
     {
-        $role = Role::find($id);
+        $user = User::find($id);
 
-        return view('roles.edit', ['role' => $role]);
+        return view('users.edit', ['user' => $user]);
     }
 
     /**
@@ -91,17 +88,16 @@ class RolesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $role = Role::find($id);
+        $input = $request->all();
+        $user = User::find($id);
 
-        if (Gate::denies('update', $role)) {
-            abort(403);
-        }
+        $user->fill($input);
 
-        $role->fill($request->all());
+        $user->role_id = $input['role_id'];
+        
+        $user->save();
 
-        $role->save();
-
-        return redirect('/roles');
+        return redirect('/users');
     }
 
     /**
@@ -112,14 +108,10 @@ class RolesController extends Controller
      */
     public function destroy($id)
     {
-        $role = Role::find($id);
+        $user = User::find($id);
 
-        if (Gate::denies('destroy', $role)) {
-            abort(403);
-        }
+        $user->delete();
 
-        $role->delete();
-
-        return redirect('/roles');
+        return redirect('/users');
     }
 }

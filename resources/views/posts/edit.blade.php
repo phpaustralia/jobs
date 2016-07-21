@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <h1>Edit Job</h1>
+            <h1>Edit Post</h1>
             <div class="pull-right">
 
             </div>

@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\JobCreated;
 use Gate;
 use App\Job;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Event;
 
 class JobsController extends Controller
 {
@@ -50,7 +52,9 @@ class JobsController extends Controller
 
         $input['user_id'] = Auth::user()->id;
 
-        Job::create($input);
+        $job = Job::create($input);
+
+        Event::fire(new JobCreated($job));
         
         return redirect('/jobs');
     }
@@ -118,6 +122,21 @@ class JobsController extends Controller
         }
 
         $job->delete();
+
+        return redirect('/jobs');
+    }
+    
+    public function approve($id)
+    {
+        $job = Job::find($id);
+
+        if (Gate::denies('approve', $job)) {
+            abort(403);
+        }
+        
+        $job->approved = true;
+
+        $job->save();
 
         return redirect('/jobs');
     }

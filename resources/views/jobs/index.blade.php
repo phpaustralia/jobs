@@ -25,7 +25,8 @@
                 <td>{{$job->created_at}}</td>
                 <td>
                     <a href="/jobs/{{$job->id}}" class="btn btn-primary">view</a>
-                    <a href="/jobs/{{$job->id}}/edit" class="btn btn-success">edit</a>
+                    <a href="/jobs/{{$job->id}}/approve" class="btn btn-success" >Approve</a>
+                    <a href="/jobs/{{$job->id}}/edit" class="btn btn-warning">edit</a>
                     <form action="/jobs/{{$job->id}}" method="post" style="display: inline;">
                         {{csrf_field()}}
                         {{method_field('DELETE')}}

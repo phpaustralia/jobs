@@ -22,8 +22,12 @@ Route::get('/home', 'HomeController@index');
 
 Route::resource('/jobs', 'JobsController');
 
+Route::get('/jobs/{id}/approve', 'JobsController@approve');
+
 Route::resource('/posts', 'PostsController');
 
 Route::resource('/sponsors', 'SponsorsController');
 
 Route::resource('/roles', 'RolesController');
+
+Route::resource('/users', 'UsersController');

@@ -26,5 +26,11 @@ class JobPolicy
     {
         return $user->id === $job->user_id;
     }
+    
+    public function approve(User $user, Job $job)
+    {
+        // Only admins can approve and they pass the before filter, so this condition will not apply to them
+        return false;
+    }
 
 }

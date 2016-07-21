@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 class Job extends Model
 {
-    public $fillable = ['name', 'description', 'user_id'];
+    public $fillable = ['title', 'description', 'user_id'];
     
     public function user()
     {

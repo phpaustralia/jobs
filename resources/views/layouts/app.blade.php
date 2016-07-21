@@ -51,7 +51,14 @@
                     <li><a href="{{ url('/home') }}">Home</a></li>
                     <li><a href="/jobs">Jobs</a></li>
                     <li><a href="/posts">Posts</a></li>
-                    <li><a href="/roles">Roles</a></li>
+
+                    @if(Auth::check())
+                        @if(Auth::user()->isAdmin())
+                            <li><a href="/roles">Roles</a></li>
+                            <li><a href="/users">Users</a></li>
+                        @endif
+                        @include('messages.list', ['messages' => Auth::user()->messages()])
+                    @endif
                 </ul>
 
                 <!-- Right Side Of Navbar -->
