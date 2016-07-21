@@ -12,12 +12,12 @@
                     <div class="row">
                         <div class="col-sm-6 col-sm-push-3">
                             <div class="col-sm-6">
-                                <a class="btn btn-lg btn-block onl_login onl_btn-facebook" href="/login/facebook"><i class="fa fa-facebook"></i></a>
-                                <a class="btn btn-lg btn-block onl_login onl_btn-twitter" href="/login/twitter"><i class="fa fa-twitter"></i></a>
+                                <a class="btn btn-lg btn-block onl_login onl_btn-facebook" href="/auth/facebook"><i class="fa fa-facebook"></i></a>
+                                <a class="btn btn-lg btn-block onl_login onl_btn-twitter" href="/auth/twitter"><i class="fa fa-twitter"></i></a>
                             </div>
                             <div class="col-sm-6">
-                                <a class="btn btn-lg btn-block onl_login onl_btn-github" href="/login/linkedin"><i class="fa fa-github"></i></a>
-                                <a class="btn btn-lg btn-block onl_login onl_btn-google-plus" href="/login/google"><i class="fa fa-google-plus"></i></a>
+                                <a class="btn btn-lg btn-block onl_login onl_btn-github" href="/auth/github"><i class="fa fa-github"></i></a>
+                                <a class="btn btn-lg btn-block onl_login onl_btn-google-plus" href="/auth/google"><i class="fa fa-google-plus"></i></a>
                             </div>
                         </div>
                     </div>

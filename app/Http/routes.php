@@ -31,10 +31,9 @@ Route::get('auth/{provider}/callback', 'Auth\AuthController@handleProviderCallba
 
 Route::get('/home', 'HomeController@index');
 
-
 Route::resource('/jobs', 'JobsController');
 
-Route::get('/jobs/{id}/approve', 'JobsController@approve');
+Route::get('/jobs/{id}/approve/{value}', 'JobsController@approve');
 
 Route::resource('/posts', 'PostsController');
 

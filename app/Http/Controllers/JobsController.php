@@ -15,7 +15,7 @@ class JobsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('admin', ['except' => ['index', 'show']]);
     }
 
     /**
@@ -126,7 +126,7 @@ class JobsController extends Controller
         return redirect('/jobs');
     }
     
-    public function approve($id)
+    public function approve($id, $value)
     {
         $job = Job::find($id);
 
@@ -134,7 +134,7 @@ class JobsController extends Controller
             abort(403);
         }
         
-        $job->approved = true;
+        $job->approved = $value == 1 ? true : false;
 
         $job->save();
 

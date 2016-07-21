@@ -20,7 +20,7 @@
         @foreach($posts as $post)
             <tr>
                 <td>{{$post->title}}</td>
-                <td>{!! $post->description !!}</td>
+                <td>{!! $post->content !!}</td>
                 <td>{{$post->user->name}}</td>
                 <td>{{$post->created_at}}</td>
                 <td>

@@ -13,7 +13,7 @@ class PostsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('admin', ['except' => ['index', 'show']]);
     }
 
     /**
@@ -50,7 +50,15 @@ class PostsController extends Controller
 
         $input['user_id'] = Auth::user()->id;
 
-        Post::create($input);
+        $post = Post::create($input);
+
+//        $file = $request->file('image');
+//
+//        $fileEntry = new FileEntry();
+//
+//        $fileEntry->getFromUpload($file);
+//
+//        $post->files()->attach($fileEntry);
 
         return redirect('/posts');
     }
@@ -65,7 +73,7 @@ class PostsController extends Controller
     {
         $post = Post::find($id);
 
-        return view('posts.show', ['job' => $post]);
+        return view('posts.show', ['post' => $post]);
     }
 
     /**
@@ -78,7 +86,7 @@ class PostsController extends Controller
     {
         $post = Post::find($id);
 
-        return view('posts.edit', ['job' => $post]);
+        return view('posts.edit', ['post' => $post]);
     }
 
     /**
@@ -91,10 +99,6 @@ class PostsController extends Controller
     public function update(Request $request, $id)
     {
         $post = Post::find($id);
-
-        if (Gate::denies('update', $post)) {
-            abort(403);
-        }
 
         $post->fill($request->all());
 
@@ -112,10 +116,6 @@ class PostsController extends Controller
     public function destroy($id)
     {
         $post = Post::find($id);
-
-        if (Gate::denies('destroy', $post)) {
-            abort(403);
-        }
 
         $post->delete();
 

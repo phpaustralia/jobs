@@ -11,6 +11,12 @@ use Illuminate\Support\Facades\File;
 
 class FilesController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('admin', ['except' => ['show']]);
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -80,6 +86,14 @@ class FilesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $file = FileEntry::find($id);
+
+        $path = storage_path() . '/app/'. $file->path;
+
+        File::delete($path);
+
+        $file->delete();
+
+        return redirect('/files');
     }
 }

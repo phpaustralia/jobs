@@ -10,7 +10,7 @@
                 </div>
                 <div class="panel-body">
                     @foreach($jobs as $job)
-                        @include('partials.media', ['heading' => $job->title, 'body' => $job->description])
+                        @include('partials.media', ['heading' => $job->title, 'body' => $job->description, 'link' => url("/jobs/$job->id")])
                     @endforeach
                 </div>
             </div>
@@ -21,7 +21,7 @@
 
                 <div class="panel-body">
                     @foreach($posts as $post)
-                        @include('partials.media', ['heading' => $post->title, 'body' => $post->content])
+                        @include('partials.media', ['heading' => $post->title, 'body' => $post->content, 'link' => url("/posts/$post->id")])
                     @endforeach
                 </div>
             </div>
