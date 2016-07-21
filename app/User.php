@@ -44,4 +44,37 @@ class User extends Authenticatable
         
         return $this->role->name == 'admin';
     }
+
+    public static function findByEmailOrCreate($data)
+    {
+        $user = self::where('email', '=', $data->email)->first();
+        if(!$user) {
+            $user = User::create([
+                'name' => $data->name,
+                'email' => $data->email,
+            ]);
+        }
+
+        self::checkIfUserNeedsUpdating($data, $user);
+
+        return $user;
+    }
+
+    public static function checkIfUserNeedsUpdating($data, $user)
+    {
+        $socialData = [
+            'email' => $data->email,
+            'name' => $data->name,
+        ];
+        $dbData = [
+            'email' => $user->email,
+            'name' => $user->name,
+        ];
+
+        if (!empty(array_diff($socialData, $dbData))) {
+            $user->email = $data->email;
+            $user->name = $data->name;
+            $user->save();
+        }
+    }
 }

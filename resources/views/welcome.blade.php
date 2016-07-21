@@ -3,22 +3,26 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-sm-3">
+        <div class="col-sm-4">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     Jobs
                 </div>
                 <div class="panel-body">
-
+                    @foreach($jobs as $job)
+                        @include('partials.media', ['heading' => $job->title, 'body' => $job->description])
+                    @endforeach
                 </div>
             </div>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-8">
             <div class="panel panel-default">
-                <div class="panel-heading">Welcome</div>
+                <div class="panel-heading">Posts</div>
 
                 <div class="panel-body">
-                    Your Application's Landing Page.
+                    @foreach($posts as $post)
+                        @include('partials.media', ['heading' => $post->title, 'body' => $post->content])
+                    @endforeach
                 </div>
             </div>
         </div>

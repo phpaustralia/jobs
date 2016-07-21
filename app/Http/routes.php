@@ -11,11 +11,23 @@
 |
 */
 
+use App\Job;
+use App\Post;
+
 Route::get('/', function () {
-    return view('welcome');
+
+    $jobs = Job::all();
+
+    $posts = Post::all();
+
+    return view('welcome', ['jobs' => $jobs, 'posts' => $posts]);
 });
 
 Route::auth();
+
+Route::get('auth/{provider}', 'Auth\AuthController@redirectToProvider');
+
+Route::get('auth/{provider}/callback', 'Auth\AuthController@handleProviderCallback');
 
 Route::get('/home', 'HomeController@index');
 
@@ -31,3 +43,6 @@ Route::resource('/sponsors', 'SponsorsController');
 Route::resource('/roles', 'RolesController');
 
 Route::resource('/users', 'UsersController');
+
+Route::resource('/files', 'FilesController');
+

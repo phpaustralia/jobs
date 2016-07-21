@@ -35,4 +35,9 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'github' => [
+        'client_id' => getenv('GITHUB_KEY'),
+        'client_secret' => getenv('GITHUB_SECRET'),
+        'redirect' => url('/auth/github/callback'),
+    ],
 ];
