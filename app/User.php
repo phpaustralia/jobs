@@ -47,11 +47,11 @@ class User extends Authenticatable
 
     public static function findByEmailOrCreate($data)
     {
-        $user = self::where('email', '=', $data->email)->first();
+        $user = self::where('email', '=', $data->getEmail())->first();
         if(!$user) {
             $user = User::create([
-                'name' => $data->name,
-                'email' => $data->email,
+                'name' => $data->getName(),
+                'email' => $data->getEmail(),
             ]);
         }
 
@@ -63,8 +63,8 @@ class User extends Authenticatable
     public static function checkIfUserNeedsUpdating($data, $user)
     {
         $socialData = [
-            'email' => $data->email,
-            'name' => $data->name,
+            'email' => $data->getEmail(),
+            'name' => $data->getName(),
         ];
         $dbData = [
             'email' => $user->email,
@@ -72,8 +72,8 @@ class User extends Authenticatable
         ];
 
         if (!empty(array_diff($socialData, $dbData))) {
-            $user->email = $data->email;
-            $user->name = $data->name;
+            $user->email = $data->getEmail();
+            $user->name = $data->getName();
             $user->save();
         }
     }

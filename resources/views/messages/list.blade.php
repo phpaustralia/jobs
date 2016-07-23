@@ -3,8 +3,9 @@
         Messages <span class="caret"></span>
     </a>
     <ul class="dropdown-menu">
-        @foreach($messages as $message)
+        @foreach($messages->take(5) as $message)
             <li><a href="{{$message->link}}">{{$message->title}}</a></li>
         @endforeach
+            <li><a href="/messages">View All</a></li>
     </ul>
 </li>

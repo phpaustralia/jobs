@@ -11,7 +11,6 @@
     <table class="table">
         <thead>
         <th>Title</th>
-        <th>Description</th>
         <th>Posted by</th>
         <th>Created at</th>
         <th>Approved</th>
@@ -21,25 +20,10 @@
         @foreach($jobs as $job)
             <tr>
                 <td>{{$job->title}}</td>
-                <td>{!! $job->description !!}</td>
                 <td>{{$job->user->name}}</td>
                 <td>{{$job->created_at}}</td>
                 <td>
-                    @if($job->approved)
-                        <b>yes</b>
-                        @if(Auth::check() && Auth::user()->isAdmin())
-                    <a href="/jobs/{{$job->id}}/approve/0" class="btn btn-success btn-xs" >
-                       change
-                    </a>
-                    @endif
-                        @else
-                        <b>no</b>
-                        @if(Auth::check() && Auth::user()->isAdmin())
-                        <a href="/jobs/{{$job->id}}/approve/1" class="btn btn-primary btn-xs" >
-                            change
-                        </a>
-                        @endif
-                    @endif
+                    @include('jobs.approve', ['job' => $job])
                 </td>
                 <td>
                     <a href="/jobs/{{$job->id}}" class="btn btn-primary">view</a>

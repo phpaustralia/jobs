@@ -2,20 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\JobCreated;
-use Gate;
+use App\Comment;
 use App\Job;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Event;
 
-class JobsController extends Controller
+class CommentController extends Controller
 {
+    
     public function __construct()
     {
-        $this->middleware('admin', ['except' => ['index', 'show', 'create', 'store']]);
+        $this->middleware('auth');
     }
 
     /**
@@ -25,9 +24,7 @@ class JobsController extends Controller
      */
     public function index()
     {
-        $jobs = Job::all();
-
-        return view('jobs.index', ['jobs' => $jobs]);
+        //
     }
 
     /**
@@ -37,7 +34,7 @@ class JobsController extends Controller
      */
     public function create()
     {
-        return view('jobs.create');
+        //
     }
 
     /**
@@ -52,11 +49,13 @@ class JobsController extends Controller
 
         $input['user_id'] = Auth::user()->id;
 
-        $job = Job::create($input);
+        $comment = Comment::create($input);
 
-        Event::fire(new JobCreated($job));
-        
-        return redirect('/jobs');
+        $job = Job::find($input['job_id']);
+
+        $job->comments()->save($comment);
+
+        return back();
     }
 
     /**
@@ -67,13 +66,7 @@ class JobsController extends Controller
      */
     public function show($id)
     {
-        $job = Job::find($id);
-
-        if (Gate::denies('show', $job)) {
-            abort(403);
-        }
-        
-        return view('jobs.show', ['job' => $job]);
+        //
     }
 
     /**
@@ -84,9 +77,7 @@ class JobsController extends Controller
      */
     public function edit($id)
     {
-        $job = Job::find($id);
-        
-        return view('jobs.edit', ['job' => $job]);
+        //
     }
 
     /**
@@ -98,17 +89,7 @@ class JobsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $job = Job::find($id);
-
-        if (Gate::denies('update', $job)) {
-            abort(403);
-        }
-
-        $job->fill($request->all());
-
-        $job->save();
-
-        return redirect('/jobs');
+        //
     }
 
     /**
@@ -119,29 +100,6 @@ class JobsController extends Controller
      */
     public function destroy($id)
     {
-        $job = Job::find($id);
-
-        if (Gate::denies('destroy', $job)) {
-            abort(403);
-        }
-
-        $job->delete();
-
-        return redirect('/jobs');
-    }
-    
-    public function approve($id, $value)
-    {
-        $job = Job::find($id);
-
-        if (Gate::denies('approve', $job)) {
-            abort(403);
-        }
-        
-        $job->approved = $value == 1 ? true : false;
-
-        $job->save();
-
-        return redirect('/jobs');
+        //
     }
 }

@@ -22,4 +22,9 @@ class Job extends Model
         
         $this->approved = true;
     }
+
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
 }

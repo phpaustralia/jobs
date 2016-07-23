@@ -14,14 +14,7 @@
 use App\Job;
 use App\Post;
 
-Route::get('/', function () {
-
-    $jobs = Job::all();
-
-    $posts = Post::all();
-
-    return view('welcome', ['jobs' => $jobs, 'posts' => $posts]);
-});
+Route::get('/', 'PagesController@welcome');
 
 Route::auth();
 
@@ -44,4 +37,6 @@ Route::resource('/roles', 'RolesController');
 Route::resource('/users', 'UsersController');
 
 Route::resource('/files', 'FilesController');
+
+Route::resource('/comments', 'CommentController');
 

@@ -12,9 +12,12 @@ class JobPolicy
 
     public function before($user)
     {
-        if ($user->isAdmin()) {
-            return true;
-        }
+        if ($user->isAdmin())  return true;
+    }
+    
+    public function show(Job $job)
+    {
+        return $job->approved;
     }
 
     public function update(User $user, Job $job)

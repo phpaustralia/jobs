@@ -89,9 +89,11 @@ class AuthController extends Controller
     public function handleProviderCallback($provider)
     {
         $user = Socialite::driver($provider)->user();
+        
+        $authUser = User::findByEmailOrCreate($user);
 
-        $this->login($user, true);
+        $this->login($authUser, true);
 
-        // $user->token;
+        return redirect('/home');
     }
 }
