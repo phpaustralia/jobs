@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\JobApproved;
 use App\Events\JobCreated;
 use Gate;
 use App\Job;
@@ -15,7 +16,7 @@ class JobsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('admin', ['except' => ['index', 'show', 'create', 'store']]);
+        $this->middleware('auth', ['except' => ['index', 'show']]);
     }
 
     /**
@@ -25,7 +26,13 @@ class JobsController extends Controller
      */
     public function index()
     {
-        $jobs = Job::all();
+        $query = Job::query();
+
+        if(!Auth::check() || !Auth::user()->isAdmin()) {
+            $query->where('approved', '=', 1);
+        }
+
+        $jobs = $query->get();
 
         return view('jobs.index', ['jobs' => $jobs]);
     }
@@ -50,10 +57,16 @@ class JobsController extends Controller
     {
         $input = $request->all();
 
-        $input['user_id'] = Auth::user()->id;
+        $job = new Job();
 
-        $job = Job::create($input);
+        $job->title = $input['title'];
 
+        $job->description = $input['description'];
+
+        $job->user_id = Auth::user()->id;
+
+        $job->save();
+        
         Event::fire(new JobCreated($job));
         
         return redirect('/jobs');
@@ -85,6 +98,10 @@ class JobsController extends Controller
     public function edit($id)
     {
         $job = Job::find($id);
+
+        if (Gate::denies('update', $job)) {
+            abort(403);
+        }
         
         return view('jobs.edit', ['job' => $job]);
     }
@@ -141,6 +158,8 @@ class JobsController extends Controller
         $job->approved = $value == 1 ? true : false;
 
         $job->save();
+
+        Event::fire(new JobApproved($job));
 
         return redirect('/jobs');
     }

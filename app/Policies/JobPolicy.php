@@ -15,19 +15,20 @@ class JobPolicy
         if ($user->isAdmin())  return true;
     }
     
-    public function show(Job $job)
+    public function show(User $user, Job $job)
     {
         return $job->approved;
     }
 
     public function update(User $user, Job $job)
     {
-        return $user->id === $job->user_id;
+
+        return $user->id == $job->user_id;
     }
     
     public function destroy(User $user, Job $job)
     {
-        return $user->id === $job->user_id;
+        return $user->id == $job->user_id;
     }
     
     public function approve(User $user, Job $job)

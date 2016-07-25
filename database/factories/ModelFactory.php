@@ -28,6 +28,8 @@ $factory->define(App\Role::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Job::class, function (Faker\Generator $faker) {
     return [
-        
+        'title' => $faker->sentence(),
+        'description' => $faker->paragraph(),
+        'approved' => 0,
     ];
 });

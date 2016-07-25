@@ -22,4 +22,17 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
 
         return $app;
     }
+    
+    public function createAdmin($data = [])
+    {
+        $admin = factory(App\User::class)->create($data);
+
+        $role = factory(\App\Role::class)->create(['name' => 'admin']);
+
+        $admin->role_id = $role->id;
+
+        $admin->save();
+        
+        return $admin;
+    }
 }
