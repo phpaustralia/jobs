@@ -1,4 +1,5 @@
 # PHPMelb site
+[![Build Status][ico-travis]][link-travis]
 
 ## Install
 
@@ -26,3 +27,6 @@ php artisan serve
 
 - email: admin@phpmelb.com
 - password: secret
+
+[link-travis]: https://travis-ci.org/phpaustralia/jobs
+[ico-travis]: https://img.shields.io/travis/phpaustralia/jobs/master.svg?style=flat-square
