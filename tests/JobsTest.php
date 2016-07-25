@@ -175,7 +175,19 @@ class JobsTest extends TestCase
      */
     public function it_blocks_non_owner_from_deleting_job()
     {
+        $owner = factory(App\User::class)->create();
 
+        $job = factory(App\Job::class)->create([
+            'user_id' => $owner->id,
+            'approved' => true,
+        ]);
+
+        $user = factory(App\User::class)->create();
+
+        $this->actingAs($user)
+            ->delete("/jobs/{$job->id}")
+            ->assertResponseStatus(403)
+            ->seeInDatabase('jobs', $job->toArray());
     }
 
     /**
@@ -183,6 +195,17 @@ class JobsTest extends TestCase
      */
     public function it_allows_admin_to_delete_job()
     {
+        $owner = factory(App\User::class)->create();
 
+        $job = factory(App\Job::class)->create([
+            'user_id' => $owner->id,
+            'approved' => true,
+        ]);
+
+        $admin = $this->createAdmin();
+
+        $this->actingAs($admin)
+            ->delete("/jobs/{$job->id}")
+            ->dontSeeInDatabase('jobs', $job->toArray());
     }
 }
