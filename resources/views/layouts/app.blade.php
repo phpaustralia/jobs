@@ -21,7 +21,6 @@
         body {
             font-family: 'Lato';
         }
-
         .fa-btn {
             margin-right: 6px;
         }
@@ -51,7 +50,6 @@
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/home') }}">Home</a></li>
                     <li><a href="/jobs">Jobs</a></li>
-                    <li><a href="/posts">Posts</a></li>
 
                     @if(Auth::check())
                         @if(Auth::user()->isAdmin())

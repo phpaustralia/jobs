@@ -28,8 +28,6 @@ Route::resource('/jobs', 'JobsController');
 
 Route::get('/jobs/{id}/approve/{value}', 'JobsController@approve');
 
-Route::resource('/posts', 'PostsController');
-
 Route::resource('/sponsors', 'SponsorsController');
 
 Route::resource('/roles', 'RolesController');
