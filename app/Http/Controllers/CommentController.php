@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class CommentController extends Controller
 {
@@ -49,11 +50,7 @@ class CommentController extends Controller
 
         $input['user_id'] = Auth::user()->id;
 
-        $comment = Comment::create($input);
-
-        $job = Job::find($input['job_id']);
-
-        $job->comments()->save($comment);
+        Comment::create($input);
 
         return back();
     }
@@ -89,7 +86,17 @@ class CommentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $comment = Comment::find($id);
+
+        if (Gate::denies('update', $comment)) {
+            abort(403);
+        }
+
+        $comment->body = $request->input('body');
+
+        $comment->save();
+
+        return back();
     }
 
     /**
@@ -100,6 +107,14 @@ class CommentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $comment = Comment::find($id);
+
+        if (Gate::denies('destroy', $comment)) {
+            abort(403);
+        }
+        
+        $comment->delete();
+        
+        return back();
     }
 }

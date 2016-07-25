@@ -14,8 +14,6 @@ class PagesController extends Controller
     {
         $jobs = Job::where('approved', '=', 1)->orderBy('created_at')->get();
 
-        $posts = Post::all();
-
-        return view('welcome', ['jobs' => $jobs, 'posts' => $posts]);
+        return view('welcome', ['jobs' => $jobs]);
     }
 }

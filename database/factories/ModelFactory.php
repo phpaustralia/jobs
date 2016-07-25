@@ -33,3 +33,9 @@ $factory->define(App\Job::class, function (Faker\Generator $faker) {
         'approved' => 0,
     ];
 });
+
+$factory->define(App\Comment::class, function(Faker\Generator $faker) {
+    return [
+        'body' => $faker->paragraph()
+    ];
+});

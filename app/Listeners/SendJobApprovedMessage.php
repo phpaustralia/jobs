@@ -14,9 +14,9 @@ class SendJobApprovedMessage
      *
      * @return void
      */
-    public function __construct(Mailer $mailer)
+    public function __construct()
     {
-        $this->mailer = $mailer;
+        
     }
 
     /**

@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
-    public $fillable = ['body', 'user_id'];
+    public $fillable = ['body', 'user_id', 'job_id'];
 
-    public function commentable()
+    public function job()
     {
-        return $this->morphTo();
+        return $this->belongsTo(Job::class);
     }
     
     public function user()

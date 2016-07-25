@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Comment;
 use App\Job;
+use App\Policies\CommentPolicy;
 use App\Policies\JobPolicy;
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -15,8 +17,8 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'App\Model' => 'App\Policies\ModelPolicy',
-        Job::class => JobPolicy::class
+        Job::class => JobPolicy::class,
+        Comment::class => CommentPolicy::class,
     ];
 
     /**
