@@ -30,6 +30,14 @@ class User extends Authenticatable
             ->orWhere('broadcast', '=', true)
             ->get();
     }
+    
+    public function conversations()
+    {
+        return Message::where('to', '=', $this->id)
+            ->orWhere('from', '=', $this->id)
+            ->orWhere('broadcast', '=', true)
+            ->get();
+    }
 
     public function role()
     {

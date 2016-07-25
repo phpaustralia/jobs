@@ -40,3 +40,5 @@ Route::resource('/files', 'FilesController');
 
 Route::resource('/comments', 'CommentController');
 
+Route::resource('/messages', 'MessagesController');
+
