@@ -44,6 +44,18 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
 
+    public function watching()
+    {
+        return $this->belongsToMany(Job::class);
+    }
+
+    public function isWatching($job)
+    {
+        $jobs = $this->watching->map(function($job) { return $job->id; });
+
+        return in_array($job->id, $jobs->toArray()) ;
+    }
+
     public function isAdmin()
     {
         if ($this->role == null) {

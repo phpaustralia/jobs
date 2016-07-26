@@ -18,4 +18,9 @@ class Job extends Model
     {
         return $this->hasMany(Comment::class);
     }
+
+    public function watchers()
+    {
+        return $this->hasMany(User::class);
+    }
 }

@@ -163,4 +163,22 @@ class JobsController extends Controller
 
         return redirect('/jobs');
     }
+
+    public function watch($id)
+    {
+        $job = Job::find($id);
+
+        Auth::user()->watching()->attach($job);
+
+        return back();
+    }
+
+    public function unwatch($id)
+    {
+        $job = Job::find($id);
+
+        Auth::user()->watching()->detach($job);
+
+        return back();
+    }
 }

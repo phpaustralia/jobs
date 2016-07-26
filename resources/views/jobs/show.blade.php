@@ -3,7 +3,18 @@
 @section('content')
 
     <div class="container">
-
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="pull-right">
+                    @if(Auth::check() && Auth::user()->isWatching($job))
+                        <a href="/jobs/{{$job->id}}/unwatch" class="btn btn-primary">un-watch</a>
+                    @else
+                        <a href="/jobs/{{$job->id}}/watch" class="btn btn-primary">watch</a>
+                    @endif
+                </div>
+            </div>
+        </div>
+        <br>
         <div class="row">
             <div class="col-sm-12">
                 <div class="panel panel-default">
