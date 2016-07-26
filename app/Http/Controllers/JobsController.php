@@ -16,7 +16,7 @@ class JobsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->middleware('auth', ['except' => ['show']]);
     }
 
     /**
@@ -83,6 +83,9 @@ class JobsController extends Controller
         $job = Job::find($id);
 
         if (Gate::denies('show', $job)) {
+            if(!Auth::check()) {
+                return redirect()->guest('login');
+            }
             abort(403);
         }
         

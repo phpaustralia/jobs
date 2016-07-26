@@ -17,7 +17,7 @@ class JobPolicy
     
     public function show(User $user, Job $job)
     {
-        return $job->approved;
+        return $job->approved || $user->id == $job->user_id;
     }
 
     public function update(User $user, Job $job)

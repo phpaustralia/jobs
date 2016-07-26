@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use App\Job;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -24,6 +26,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $data['jobs'] = Job::where('approved', '=', 1)->orderBy('created_at')->get();
+        $data['myJobs'] = Auth::user()->jobs();
+        $data['watching'] = Auth::user()->watching;
+
+        return view('home', $data);
     }
 }
