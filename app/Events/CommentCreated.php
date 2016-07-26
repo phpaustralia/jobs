@@ -2,25 +2,25 @@
 
 namespace App\Events;
 
+use App\Comment;
 use App\Events\Event;
-use App\User;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class UserRegistered extends Event
+class CommentCreated extends Event
 {
     use SerializesModels;
     
-    public $user;
+    public $comment;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(User $user)
+    public function __construct(Comment $comment)
     {
-        $this->user = $user;
+        $this->comment = $comment;
     }
 
     /**

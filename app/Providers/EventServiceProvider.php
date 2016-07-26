@@ -24,7 +24,10 @@ class EventServiceProvider extends ServiceProvider
             'App\Listeners\SendWelcomeMessage',
             'App\Listeners\SubscribeToMailingList',
             'App\Listeners\SendSlackInvite'
-        ]
+        ],
+        'App\Events\CommentCreated' => [
+            'App\Listeners\SendNewCommentNotification'
+        ],
     ];
 
     /**

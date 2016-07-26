@@ -38,6 +38,11 @@ class User extends Authenticatable
             ->orWhere('broadcast', '=', true)
             ->get();
     }
+    
+    public function jobs()
+    {
+        return $this->hasMany(Job::class);
+    }
 
     public function role()
     {

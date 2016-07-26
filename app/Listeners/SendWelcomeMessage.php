@@ -26,6 +26,11 @@ class SendWelcomeMessage
      */
     public function handle(UserRegistered $event)
     {
-        //
+        Mail::send('emails.welcome', ['user' => $event->user] , function ($message) use ($event) {
+
+            $message->to($event->user->email);
+
+            $message->subject('Welcome to php Melbourne!');
+        });
     }
 }

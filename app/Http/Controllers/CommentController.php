@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
+use App\Events\CommentCreated;
 use App\Job;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Gate;
 
 class CommentController extends Controller
@@ -49,8 +51,10 @@ class CommentController extends Controller
         $input = $request->all();
 
         $input['user_id'] = Auth::user()->id;
+        
+        $comment = Comment::create($input);
 
-        Comment::create($input);
+        Event::fire(new CommentCreated($comment));
 
         return back();
     }
