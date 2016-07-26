@@ -12,7 +12,10 @@ class MessageCollection extends Collection
      */
     public function groupByCorrespondent($user_id)
     {
-        $conversations = $this->reduce(function($carry, $message) use ($user_id) {
+        $conversations = $this->reduce(function($carry, $message) use ($user_id)
+        {
+            if (!$message->sender) return $carry;
+
             if($user_id != $message->sender->id) {
                 $message->side = 'left';
                 $carry[$message->sender->id]['id'] = $message->sender->id;
