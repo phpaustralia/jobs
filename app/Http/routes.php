@@ -14,6 +14,18 @@
 use App\Job;
 use App\Post;
 
+Route::get('/deploy', [ 'middleware' => 'throttle:2', function () {
+
+  $script = base_path('deploy.sh');
+
+  chdir(base_path());
+
+  exec("sh $script", $output, $code);
+
+  return response(['output' => $output, 'code' => $code], 200);
+
+}]);
+
 Route::get('/', 'PagesController@welcome');
 
 Route::auth();
