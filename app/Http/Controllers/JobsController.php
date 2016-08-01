@@ -57,9 +57,17 @@ class JobsController extends Controller
     {
         $input = $request->all();
 
+//        dd($input);
+
         $job = new Job();
 
         $job->title = $input['title'];
+
+        $job->lat = $input['lat'];
+
+        $job->lng = $input['lng'];
+
+        $job->address = $input['address'];
 
         $job->description = $input['description'];
 

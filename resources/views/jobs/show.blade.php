@@ -28,6 +28,12 @@
                         @endif
                     </div>
                     <div class="panel-body">
+
+                            <b>Address:
+                          {{$job->address}} </b>
+
+                        <hr>
+
                         {!! $job->description !!}
                     </div>
                 </div>
