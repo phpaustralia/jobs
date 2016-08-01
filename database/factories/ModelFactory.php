@@ -31,6 +31,9 @@ $factory->define(App\Job::class, function (Faker\Generator $faker) {
         'title' => $faker->sentence(),
         'description' => $faker->paragraph(),
         'approved' => 0,
+        'address' => $faker->address(),
+        'lat' => $faker->latitude(),
+        'lng' => $faker->longitude(),
     ];
 });
 

@@ -28,5 +28,13 @@ php artisan serve
 - email: admin@phpmelb.com
 - password: secret
 
+## Create dummy data:
+
+```bash
+php artisan tinker
+> $user = factory(App\User::class)->create();
+> factory(App\Job::class, 50)->create(['user_id' => $user->id, 'approved' => 1]);
+```
+
 [link-travis]: https://travis-ci.org/phpaustralia/jobs
 [ico-travis]: https://img.shields.io/travis/phpaustralia/jobs/master.svg?style=flat-square

@@ -90,14 +90,16 @@ class JobsController extends Controller
     {
         $job = Job::find($id);
 
-        if (Gate::denies('show', $job)) {
-            if(!Auth::check()) {
-                return redirect()->guest('login');
-            }
-            abort(403);
+        if ($job->approved) {
+            return view('jobs.show', ['job' => $job]);
         }
-        
-        return view('jobs.show', ['job' => $job]);
+        if(!Auth::check()) {
+            return redirect()->guest('login');
+        }
+        if (Auth::id() == $job->user_id) {
+            return view('jobs.show', ['job' => $job]);
+        }
+        abort(403);
     }
 
     /**
