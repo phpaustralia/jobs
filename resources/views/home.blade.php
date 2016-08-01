@@ -25,19 +25,14 @@
                         <!-- Tab panes -->
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane active" id="all-jobs">
-                                @foreach($jobs as $job)
-                                    @include('partials.media', ['heading' => $job->title, 'link' => url("/jobs/$job->id")])
-                                @endforeach
+                                <joblist base_url="/api/v1/jobs" ></joblist>
                             </div>
                             <div role="tabpanel" class="tab-pane" id="my-jobs">
-                                @foreach($myJobs as $job)
-                                    @include('partials.media', ['heading' => $job->title, 'link' => url("/jobs/$job->id")])
-                                @endforeach
+                                <joblist base_url="/api/v1/jobs/owned" ></joblist>
+
                             </div>
                             <div role="tabpanel" class="tab-pane" id="watching-jobs">
-                                @foreach($watching as $job)
-                                    @include('partials.media', ['heading' => $job->title, 'link' => url("/jobs/$job->id")])
-                                @endforeach
+                                <joblist base_url="/api/v1/jobs/watching" ></joblist>
                             </div>
                         </div>
 
