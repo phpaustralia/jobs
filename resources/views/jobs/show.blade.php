@@ -28,12 +28,8 @@
                         @endif
                     </div>
                     <div class="panel-body">
-
-                            <b>Address:
-                          {{$job->address}} </b>
-
+                        <b>Address:</b> {{$job->address}}
                         <hr>
-
                         {!! $job->description !!}
                     </div>
                 </div>

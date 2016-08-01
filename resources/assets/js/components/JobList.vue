@@ -12,7 +12,6 @@
 
                 <div class="media-body">
                     <h4 class="media-heading">{{job.title}}</h4>
-                    <!--{{ job.description }}-->
                 </div>
 
             </a>
@@ -34,9 +33,10 @@
 </template>
 
 <script>
+
     export default {
 
-        props: ['base_url', 'query_param'],
+        props: ['base_url'],
 
         data () {
             return {
@@ -77,7 +77,7 @@
             get(url) {
 
                 this.$http.get(url).then( (response) => {
-                    var res = response.json();
+                var res = response.json();
                 this.$set('jobs', res.data)
                 this.pagination.total = res.total
                 this.pagination.per_page = res.per_page
