@@ -32,7 +32,7 @@ class JobsController extends Controller
             $query->where('approved', '=', 1);
         }
 
-        $jobs = $query->get();
+        $jobs = $query->paginate(10);
 
         return view('jobs.index', ['jobs' => $jobs]);
     }

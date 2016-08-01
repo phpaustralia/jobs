@@ -45,5 +45,6 @@
         @endforeach
         </tbody>
     </table>
+    {{ $jobs->links() }}
     </div>
 @stop

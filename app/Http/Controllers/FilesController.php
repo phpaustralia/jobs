@@ -24,7 +24,7 @@ class FilesController extends Controller
      */
     public function index()
     {
-        $files = FileEntry::all();
+        $files = FileEntry::paginate(10);
 
         return view('files.index', ['files' => $files]);
     }

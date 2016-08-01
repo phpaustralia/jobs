@@ -37,5 +37,6 @@
             @endforeach
             </tbody>
         </table>
+        {{ $files->links() }}
     </div>
 @stop
