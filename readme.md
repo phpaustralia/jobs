@@ -1,5 +1,21 @@
-# PHPMelb site
+# PHP Australia Jobs Board
 [![Build Status][ico-travis]][link-travis]
+
+## About
+
+We're moving the phpMelb mailing list (which is currently just used for job postings) to a web app. The new product will duplicate functionality and include the features of a mailing list people most liked:
+
+* delivery to inbox
+* email replies go to everyone
+* hide recipient email addresses (replies go to the application)
+
+phpMelb members really liked hearing feedback from seniors in the industry about what was reasonable with regards to expected skills, remuneration, etc.
+
+The road map includes web-based views (for search engine indexing and lowered barrier to entry for those wanting to see what's being posted) which will provide a better UX that the mailman archives (look more like a blog post with nested comments on one page, rather than one email per web page and clunky navigation).
+
+Eventually, we want to assign posts to sectors, which people can selectively subscribe to. To start with, this will be regions.
+
+As well as allowing me to then remove the only remaining mailman list from my server, this will also be a group project. Anyone can collaborate here, and via code. This will help new developers get used to git processes, allow mentors to provide code reviews, and more.
 
 ## Install
 
