@@ -7,3 +7,5 @@ Homestead.json
 .idea
 **/*.map
 /build
+/public/css/
+/public/js/
