@@ -21,6 +21,7 @@
             <ul class="nav navbar-nav">
                 <li><a href="{{ url('/home') }}">Home</a></li>
                 <li><a href="/jobs">Jobs</a></li>
+                <li><a href="/blog/about">About</a></li>
 
                 @if(Auth::check())
                     @if(Auth::user()->isAdmin())

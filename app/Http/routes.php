@@ -65,4 +65,11 @@ Route::group(['namespace' => 'API\V1', 'prefix' => '/api/v1'], function()
   Route::get('/jobs/owned', 'JobsController@owned');
 });
 
+Route::get('/blog/{page}', function($page){
+
+  $content = (new Parsedown)->text(file_get_contents(base_path("docs/{$page}.md")));
+
+  return view('blog', ['page' => $page, 'content' => $content ]);
+});
+
 
