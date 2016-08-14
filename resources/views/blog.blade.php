@@ -1,22 +1,21 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div id="spark-terms-screen" class="container-fluid spark-screen">
         <div class="row">
-            <search></search>
-        </div>
-        <div class="row">
-            <div class="col-sm-12">
+            <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        Jobs
+                        {{ $page }}
                     </div>
-                    <div class="panel-body">
-                        <joblist base_url="/api/v1/jobs" ></joblist>
+
+                    <div class="panel-body" style="font-size: 16px">
+                        {!! $content !!}
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+    <br>
+    <br>
 @endsection
