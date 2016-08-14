@@ -1,5 +1,11 @@
 <template>
-
+<div class="row">
+     <div class="pull-right" v-if="searching">
+                <div class="btn btn-default" @click="clearSearch">
+                    clear search
+                </div>
+            </div>
+</div>
     <div class="row">
         <div v-if="this.jobs.length == 0">
             <h1>No Jobs Found</h1>
@@ -45,6 +51,7 @@
         data () {
             return {
                 jobs: [],
+                searching: false,
                 pagination: {
                     total: null,
                     per_page: null,
@@ -81,10 +88,15 @@
         watch: {
             searchUrl (url) {
                 this.get(url);
+                this.searching = true;
             }
         },
 
         methods: {
+            clearSearch () {
+                this.get(this.base_url)
+                this.searching = false
+            },
             next (e) {
                 e.preventDefault();
                 // console.log(this.pagination.next_page_url);

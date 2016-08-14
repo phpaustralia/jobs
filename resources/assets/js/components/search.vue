@@ -20,7 +20,7 @@
                             <input id="pac-input"class="controls form-control" type="text" placeholder="Search Box">
                         </div>
                         <div class="form-group">
-                            <label for="radius">Search Radius</label>
+                            <label for="radius">Search Radius (km)</label>
                             <input type="number" v-model="radius" id="radius" name="radius" class="controls form-control">
                         </div>
                          <div class="form-group">
