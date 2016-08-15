@@ -31,6 +31,8 @@ add your database details to .env, then:
 composer install
 php artisan migrate
 php artisan db:seed
+npm install
+gulp
 ```
 
 ## Serve
