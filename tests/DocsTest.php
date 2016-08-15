@@ -14,4 +14,13 @@ class DocsTest extends TestCase
         $this->get('/docs/about')
             ->see('about');
     }
+
+    /**
+     * @test
+     */
+    public function it_returns_404_if_doc_not_found()
+    {
+        $this->get('/docs/foobar')
+            ->assertResponseStatus(404);
+    }
 }
