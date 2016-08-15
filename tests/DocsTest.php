@@ -1,5 +1,6 @@
 <?php
 
+use App\PHPAustralia\Docs;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -22,5 +23,30 @@ class DocsTest extends TestCase
     {
         $this->get('/docs/foobar')
             ->assertResponseStatus(404);
+    }
+
+    /**
+     * @test
+     */
+    public function it_gets_list_of_all_docs()
+    {
+        $docs = Docs::all();
+
+        $this->assertTrue(
+            $docs->contains('CHANGELOG') &&
+            $docs->contains('CONDUCT') &&
+            $docs->contains('LICENCE') &&
+            $docs->contains('about')
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function it_gets_doc_with_any_case()
+    {
+        $doc = Docs::get('changelog');
+
+        $this->assertTrue($doc != null);
     }
 }
