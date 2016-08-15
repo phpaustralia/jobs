@@ -2,6 +2,8 @@ var elixir = require('laravel-elixir');
 
 require('laravel-elixir-vue');
 
+require('laravel-elixir-phpcs');
+
 /*
  |--------------------------------------------------------------------------
  | Elixir Asset Management
@@ -16,4 +18,14 @@ require('laravel-elixir-vue');
 elixir(function(mix) {
     mix.sass('app.scss')
       .webpack('app.js');
+
+    elixir(function(mix) {
+        mix.phpcs([
+            'app/**/*.php',
+            'tests/**/*.php'
+        ], {
+            bin: 'vendor/bin/phpcs',
+            standard: 'PSR2'
+        });
+    });
 });
