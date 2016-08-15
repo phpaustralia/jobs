@@ -36,8 +36,8 @@ return [
     ],
 
     'github' => [
-        'client_id' => getenv('GITHUB_KEY'),
-        'client_secret' => getenv('GITHUB_SECRET'),
-        'redirect' =>  getenv("BASE_URL") . '/auth/github/callback',
+        'client_id' => env('GITHUB_KEY'),
+        'client_secret' => env('GITHUB_SECRET'),
+        'redirect' =>  env("BASE_URL") . '/auth/github/callback',
     ],
 ];
