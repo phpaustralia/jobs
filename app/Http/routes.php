@@ -65,4 +65,9 @@ Route::group(['namespace' => 'API\V1', 'prefix' => '/api/v1'], function()
   Route::get('/jobs/owned', 'JobsController@owned');
 });
 
+Route::get('/docs/{page}', [
+  'as' => 'docs', 
+  'uses' => 'DocsController@show'
+]);
+
 
