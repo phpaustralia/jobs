@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use Validator;
 use App\Http\Controllers\Controller;
@@ -91,8 +92,9 @@ class AuthController extends Controller
         $user = Socialite::driver($provider)->user();
         
         $authUser = User::findByEmailOrCreate($user);
+        
+        Auth::login($authUser, true);
 
-        $this->login($authUser, true);
 
         return redirect('/home');
     }
