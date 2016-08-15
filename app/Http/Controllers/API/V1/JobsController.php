@@ -32,13 +32,17 @@ class JobsController extends Controller
 
     public function watching(Request $request)
     {
-        if (!Auth::check()) return response('Unauthorized.', 401);
+        if (!Auth::check()) {
+            return response('Unauthorized.', 401);
+        }
         return Auth::user()->watching()->paginate(5);
     }
 
     public function owned(Request $request)
     {
-        if (!Auth::check()) return response('Unauthorized.', 401);
+        if (!Auth::check()) {
+            return response('Unauthorized.', 401);
+        }
         return Auth::user()->jobs()->paginate(5);
     }
 }

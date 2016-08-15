@@ -28,7 +28,7 @@ class JobsController extends Controller
     {
         $query = Job::query();
 
-        if(!Auth::check() || !Auth::user()->isAdmin()) {
+        if (!Auth::check() || !Auth::user()->isAdmin()) {
             $query->where('approved', '=', 1);
         }
 
@@ -93,7 +93,7 @@ class JobsController extends Controller
         if ($job->approved) {
             return view('jobs.show', ['job' => $job]);
         }
-        if(!Auth::check()) {
+        if (!Auth::check()) {
             return redirect()->guest('login');
         }
         if (Auth::id() == $job->user_id) {

@@ -10,16 +10,6 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 class SendJobApprovedMessage
 {
     /**
-     * Create the event listener.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        
-    }
-
-    /**
      * Handle the event.
      *
      * @param  JobCreated  $event
@@ -36,6 +26,5 @@ class SendJobApprovedMessage
         $message->link = url("/jobs/{$event->job->id}");
 
         $message->save();
-
     }
 }

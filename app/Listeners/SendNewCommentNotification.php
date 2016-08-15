@@ -30,7 +30,6 @@ class SendNewCommentNotification
         $comment = $event->comment;
 
         foreach ($comment->job->watchers as $user) {
-
             $message = new Message();
 
             $message->title = "{$comment->user->name} Commented on the job '{$comment->job->title}'";
@@ -41,6 +40,5 @@ class SendNewCommentNotification
 
             $message->save();
         }
-
     }
 }

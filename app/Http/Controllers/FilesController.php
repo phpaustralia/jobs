@@ -66,7 +66,9 @@ class FilesController extends Controller
     {
         $path = storage_path() . '/app/' . $filename;
 
-        if(!File::exists($path)) abort(404);
+        if (!File::exists($path)) {
+            abort(404);
+        }
 
         $file = File::get($path);
         $type = File::mimeType($path);
@@ -75,7 +77,6 @@ class FilesController extends Controller
         $response->header("Content-Type", $type);
 
         return $response;
-
     }
 
     /**
