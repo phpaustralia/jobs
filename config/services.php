@@ -36,24 +36,8 @@ return [
     ],
 
     'github' => [
-        'client_id' => getenv('GITHUB_KEY'),
-        'client_secret' => getenv('GITHUB_SECRET'),
-        'redirect' => getenv('BASE_URL') . '/auth/github/callback',
-    ],
-
-    'facebook' => [
-        'client_id' => getenv('FACEBOOK_KEY'),
-        'client_secret' => getenv('FACEBOOK_SECRET'),
-        'redirect' => getenv('BASE_URL') . '/auth/facebook/callback',
-    ],
-    'twitter' => [
-        'client_id' => getenv('TWITTER_KEY'),
-        'client_secret' => getenv('TWITTER_SECRET'),
-        'redirect' => getenv('BASE_URL') . '/auth/twitter/callback',
-    ],
-    'google' => [
-        'client_id' => getenv('GOOGLE_KEY'),
-        'client_secret' => getenv('GOOGLE_SECRET'),
-        'redirect' => getenv('BASE_URL') . '/auth/google/callback',
+        'client_id' => env('GITHUB_KEY'),
+        'client_secret' => env('GITHUB_SECRET'),
+        'redirect' =>  env("BASE_URL") . '/auth/github/callback',
     ],
 ];
