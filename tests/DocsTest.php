@@ -48,5 +48,9 @@ class DocsTest extends TestCase
         $doc = Docs::get('changelog');
 
         $this->assertTrue($doc != null);
+
+        $doc2 = Docs::get('CHANGELOG');
+
+        $this->assertTrue($doc2 != null);
     }
 }
