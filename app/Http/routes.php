@@ -16,14 +16,13 @@ use App\Post;
 
 Route::get('/deploy', [ 'middleware' => 'throttle:2', function () {
 
-  $script = base_path('deploy.sh');
+    $script = base_path('deploy.sh');
 
-  chdir(base_path());
+    chdir(base_path());
 
-  exec("sh $script", $output, $code);
+    exec("sh $script", $output, $code);
 
-  return response(['output' => $output, 'code' => $code], 200);
-
+    return response(['output' => $output, 'code' => $code], 200);
 }]);
 
 Route::get('/', 'PagesController@welcome');
@@ -56,18 +55,16 @@ Route::resource('/comments', 'CommentController');
 
 Route::resource('/messages', 'MessagesController');
 
-Route::group(['namespace' => 'API\V1', 'prefix' => '/api/v1'], function()
-{
-  Route::get('/jobs', 'JobsController@index');
+Route::group(['namespace' => 'API\V1', 'prefix' => '/api/v1'], function () {
 
-  Route::get('/jobs/watching', 'JobsController@watching');
+    Route::get('/jobs', 'JobsController@index');
 
-  Route::get('/jobs/owned', 'JobsController@owned');
+    Route::get('/jobs/watching', 'JobsController@watching');
+
+    Route::get('/jobs/owned', 'JobsController@owned');
 });
 
 Route::get('/docs/{page}', [
-  'as' => 'docs', 
+  'as' => 'docs',
   'uses' => 'DocsController@show'
 ]);
-
-

@@ -12,7 +12,9 @@ class JobPolicy
 
     public function before($user)
     {
-        if ($user->isAdmin())  return true;
+        if ($user->isAdmin()) {
+            return true;
+        }
     }
     
     public function show(User $user, Job $job)
@@ -36,5 +38,4 @@ class JobPolicy
         // Only admins can approve and they pass the before filter, so this condition will not apply to them
         return false;
     }
-
 }

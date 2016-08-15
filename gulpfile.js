@@ -21,8 +21,7 @@ elixir(function(mix) {
 
     elixir(function(mix) {
         mix.phpcs([
-            'app/**/*.php',
-            'tests/**/*.php'
+            'app/**/*.php'
         ], {
             bin: 'vendor/bin/phpcs',
             standard: 'PSR2'

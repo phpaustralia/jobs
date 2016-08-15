@@ -27,7 +27,7 @@ class RequestJobApproval
      */
     public function handle(JobCreated $event)
     {
-        Mail::send('emails.newJob', ['job' => $event->job] , function ($message) {
+        Mail::send('emails.newJob', ['job' => $event->job], function ($message) {
 
             $message->to('foo@example.com');
             

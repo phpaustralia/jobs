@@ -56,7 +56,9 @@ class User extends Authenticatable
 
     public function isWatching($job)
     {
-        $jobs = $this->watching->map(function($job) { return $job->id; });
+        $jobs = $this->watching->map(function ($job) {
+            return $job->id;
+        });
 
         return in_array($job->id, $jobs->toArray()) ;
     }
@@ -73,7 +75,7 @@ class User extends Authenticatable
     public static function findByEmailOrCreate($data)
     {
         $user = self::where('email', '=', $data->getEmail())->first();
-        if(!$user) {
+        if (!$user) {
             $user = User::create([
                 'name' => $data->getName(),
                 'email' => $data->getEmail(),
