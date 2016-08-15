@@ -36,7 +36,7 @@ class DocsTest extends TestCase
             $docs->contains('CHANGELOG') &&
             $docs->contains('CONDUCT') &&
             $docs->contains('LICENCE') &&
-            $docs->contains('about')
+            $docs->contains('ABOUT')
         );
     }
 
