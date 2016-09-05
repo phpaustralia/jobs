@@ -66,7 +66,4 @@
         }
     </script>
 
-    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initAutocomplete"
-            async defer></script>
-
 @endsection
