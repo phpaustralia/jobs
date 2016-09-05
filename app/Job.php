@@ -51,12 +51,14 @@ class Job extends Model
             ->take(10)
             ->get();
 
+        $baseUrl = "/api/v1/jobs/search?lat={$latitude}&lng={$longitude}&radius={$radius}&page=";
+
         $next = $page + 1;
         $last = ceil($count / 10);
-        $nextUrl = $next >= $last ? null : url("/api/v1/jobs/search?lat={$latitude}&lng={$longitude}&radius={$radius}&page={$next}");
+        $nextUrl = $next >= $last ? null : url($baseUrl . $next);
 
         $prev = $page - 1;
-        $prevUrl = $prev < 1 ? null : url("/api/v1/jobs/search?lat={$latitude}&lng={$longitude}&radius={$radius}&page={$prev}");
+        $prevUrl = $prev < 1 ? null : url($baseUrl . $prev);
 
         return collect([
             "total" => $count,
