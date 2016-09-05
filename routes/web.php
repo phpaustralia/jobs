@@ -1,18 +1,6 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
-
-use App\Job;
-use App\Post;
+Auth::routes();
 
 Route::get('/deploy', [ 'middleware' => 'throttle:2', function () {
 
@@ -27,11 +15,11 @@ Route::get('/deploy', [ 'middleware' => 'throttle:2', function () {
 
 Route::get('/', 'PagesController@welcome');
 
-Route::auth();
+Auth::routes();
 
-Route::get('auth/{provider}', 'Auth\AuthController@redirectToProvider');
+Route::get('auth/{provider}', 'Auth\LoginController@redirectToProvider');
 
-Route::get('auth/{provider}/callback', 'Auth\AuthController@handleProviderCallback');
+Route::get('auth/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
 
 Route::get('/home', 'HomeController@index');
 
@@ -55,16 +43,7 @@ Route::resource('/comments', 'CommentController');
 
 Route::resource('/messages', 'MessagesController');
 
-Route::group(['namespace' => 'API\V1', 'prefix' => '/api/v1'], function () {
-
-    Route::get('/jobs', 'JobsController@index');
-
-    Route::get('/jobs/watching', 'JobsController@watching');
-
-    Route::get('/jobs/owned', 'JobsController@owned');
-});
-
 Route::get('/docs/{page}', [
-  'as' => 'docs',
-  'uses' => 'DocsController@show'
+    'as' => 'docs',
+    'uses' => 'DocsController@show'
 ]);
