@@ -6,6 +6,7 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class UsersTest extends TestCase
 {
+    use Illuminate\Foundation\Testing\DatabaseTransactions;
     /**
      * @test
      */

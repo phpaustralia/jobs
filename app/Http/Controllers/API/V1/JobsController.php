@@ -45,4 +45,17 @@ class JobsController extends Controller
         }
         return Auth::user()->jobs()->paginate(5);
     }
+
+    public function search(Request $request)
+    {
+        $input = $request->all();
+        $latitude = $input["lat"];
+        $longitude = $input["lng"];
+        $radius = $input["radius"];
+        $page = $request->input('page', 1);
+
+        $jobs = Job::haversineQuery($latitude, $longitude, $radius, $page);
+
+        return $jobs;
+    }
 }
