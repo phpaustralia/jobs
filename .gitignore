@@ -9,3 +9,4 @@ Homestead.json
 /build
 /public/css/
 /public/js/
+**/*.DS_Store
