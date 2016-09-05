@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['namespace' => 'API\V1', 'prefix' => '/api/v1'], function () {
+Route::group(['namespace' => 'API\V1', 'prefix' => '/v1'], function () {
 
     Route::get('/jobs', 'JobsController@index');
 
