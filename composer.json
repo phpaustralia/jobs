@@ -8,7 +8,8 @@
         "php": ">=5.5.9",
         "laravel/framework": "5.3.*",
         "laravel/socialite": "^2.0",
-        "erusev/parsedown": "^1.6"
+        "erusev/parsedown": "^1.6",
+        "fideloper/proxy": "^3.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -45,7 +46,8 @@
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
             "php artisan optimize"
-        ]
+        ],
+        "format": "phpcbf --standard=psr2 app/"
     },
     "config": {
         "preferred-install": "dist"
