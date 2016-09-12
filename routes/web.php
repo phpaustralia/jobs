@@ -2,6 +2,8 @@
 
 Auth::routes();
 
+Route::get('/logout', 'Auth\LoginController@logout');
+
 Route::get('/deploy', [ 'middleware' => 'throttle:2', function () {
 
     $script = base_path('deploy.sh');
