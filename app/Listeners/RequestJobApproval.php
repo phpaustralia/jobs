@@ -3,6 +3,8 @@
 namespace App\Listeners;
 
 use App\Events\JobCreated;
+use App\Notifications\RequestJobApprovalNotification;
+use App\User;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Mail;
@@ -27,11 +29,10 @@ class RequestJobApproval
      */
     public function handle(JobCreated $event)
     {
-        Mail::send('emails.newJob', ['job' => $event->job], function ($message) {
+        $admins = User::getAdmins();
 
-            $message->to('foo@example.com');
-            
-            $message->subject('new job created.');
-        });
+        foreach ($admins as $admin) {
+            $admin->notify(new RequestJobApprovalNotification($event->job));
+        }
     }
 }

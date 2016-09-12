@@ -3,6 +3,8 @@
 
 return [
 
+    'name' => 'PHP Australia',
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment
@@ -149,6 +151,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
+        Illuminate\Notifications\NotificationServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -207,6 +210,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'Notification' => Illuminate\Support\Facades\Notification::class,
 
     ],
 
