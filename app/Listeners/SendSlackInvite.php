@@ -3,6 +3,7 @@
 namespace App\Listeners;
 
 use App\Events\UserRegistered;
+use App\Notifications\SlackInviteNotification;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
@@ -26,6 +27,6 @@ class SendSlackInvite
      */
     public function handle(UserRegistered $event)
     {
-        //
+        $event->user->notify(new SlackInviteNotification($event->user));
     }
 }
