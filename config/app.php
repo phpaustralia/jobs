@@ -162,7 +162,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\ViewComposerServiceProvider::class,
 
-       Laravel\Socialite\SocialiteServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
+        Fideloper\Proxy\TrustedProxyServiceProvider::class,
 
     ],
 
