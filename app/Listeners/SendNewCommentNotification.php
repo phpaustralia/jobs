@@ -40,5 +40,9 @@ class SendNewCommentNotification
 
             $message->save();
         }
+
+        foreach ($comment->job->watchers as $user) {
+            $user->notify(new CommentNotification($comment));
+        }
     }
 }
