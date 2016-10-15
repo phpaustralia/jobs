@@ -17,13 +17,10 @@ class EventServiceProvider extends ServiceProvider
             'App\Listeners\RequestJobApproval'
         ],
         'App\Events\JobApproved' => [
-            'App\Listeners\BroadcastNewJobMessage',
             'App\Listeners\SendJobApprovedMessage'
         ],
         'App\Events\UserRegistered' => [
             'App\Listeners\SendWelcomeMessage',
-            'App\Listeners\SubscribeToMailingList',
-            'App\Listeners\SendSlackInvite'
         ],
         'App\Events\CommentCreated' => [
             'App\Listeners\SendNewCommentNotification'

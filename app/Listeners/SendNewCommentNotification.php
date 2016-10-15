@@ -4,6 +4,7 @@ namespace App\Listeners;
 
 use App\Events\CommentCreated;
 use App\Message;
+use App\Notifications\CommentNotification;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
@@ -39,6 +40,8 @@ class SendNewCommentNotification
             $message->link = url("/jobs/{$comment->job->id}");
 
             $message->save();
+
+            $user->notify(new CommentNotification($comment));
         }
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Listeners;
 
 use App\Events\UserRegistered;
+use App\Notifications\Welcome;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
@@ -26,11 +27,6 @@ class SendWelcomeMessage
      */
     public function handle(UserRegistered $event)
     {
-        Mail::send('emails.welcome', ['user' => $event->user], function ($message) use ($event) {
-
-            $message->to($event->user->email);
-
-            $message->subject('Welcome to php Melbourne!');
-        });
+        $event->user->notify(new Welcome($event->user));
     }
 }
