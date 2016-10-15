@@ -41,6 +41,16 @@ Route::resource('/users', 'UsersController');
 
 Route::resource('/files', 'FilesController');
 
+Route::group([
+//    'namespace' => 'Admin', 
+    'prefix' => '/admin'], function () {
+    Route::resource('/roles', 'RolesController');
+    
+    Route::resource('/users', 'UsersController');
+    
+    Route::resource('/files', 'FilesController');
+});
+
 Route::resource('/comments', 'CommentController');
 
 Route::resource('/messages', 'MessagesController');

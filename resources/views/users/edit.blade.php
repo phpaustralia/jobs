@@ -1,7 +1,6 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 
 @section('content')
-    <div class="container">
         <div class="row">
             <h1>Edit User</h1>
             <div class="pull-right">
@@ -10,7 +9,7 @@
         </div>
         <div class="row">
             <div class="col-sm-6">
-                <form action="/users/{{$user->id}}" method="post">
+                <form action="/admin/users/{{$user->id}}" method="post">
                     {{ csrf_field() }}
                     {{ method_field('PUT') }}
 
@@ -32,12 +31,11 @@
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Save</button>
-                        <a href="/users" class="btn btn-default">Cancel</a>
+                        <a href="/admin/users" class="btn btn-default">Cancel</a>
                     </div>
                 </form>
             </div>
         </div>
-    </div>
 @stop
 
 @section('scripts')

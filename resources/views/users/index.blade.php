@@ -1,7 +1,6 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 
 @section('content')
-    <div class="container">
         <div class="row">
             <h1>Users</h1>
         </div>
@@ -33,5 +32,4 @@
         </tbody>
     </table>
     {{ $users->links() }}
-    </div>
 @stop

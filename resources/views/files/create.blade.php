@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 
 @section('content')
     <div class="container">
@@ -7,7 +7,7 @@
         </div>
         <div class="row">
             <div class="col-sm-6">
-                <form action="/files" method="post" enctype="multipart/form-data">
+                <form action="/admin/files" method="post" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="form-group">
                         <label for="name">Name</label>
