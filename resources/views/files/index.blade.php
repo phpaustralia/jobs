@@ -1,11 +1,11 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 
 @section('content')
-    <div class="container">
+
         <div class="row">
             <h1>Files</h1>
             <div class="pull-right">
-                <a href="/files/create" class="btn btn-primary">Add New</a>
+                <a href="/admin/files/create" class="btn btn-primary">Add New</a>
             </div>
         </div>
         <table class="table">
@@ -23,8 +23,8 @@
                     <td>{{$file->mimetype}}</td>
                     <td>{{$file->size}}</td>
                     <td>
-                        <a href="/files/{{$file->path}}" class="btn btn-primary">view</a>
-                        <form action="/files/{{$file->id}}" method="post" style="display: inline;">
+                        <a href="/admin/files/{{$file->path}}" class="btn btn-primary">view</a>
+                        <form action="/admin/files/{{$file->id}}" method="post" style="display: inline;">
                             {{csrf_field()}}
                             {{method_field('DELETE')}}
                             <button class="btn btn-danger" type="submit">
@@ -38,5 +38,5 @@
             </tbody>
         </table>
         {{ $files->links() }}
-    </div>
+
 @stop

@@ -24,11 +24,6 @@
                 <li><a href="{{ route('docs', ['about']) }}">About</a></li>
 
                 @if(Auth::check())
-                    @if(Auth::user()->isAdmin())
-                        <li><a href="/roles">Roles</a></li>
-                        <li><a href="/users">Users</a></li>
-                        <li><a href="/files">Files</a></li>
-                    @endif
                     @include('messages.list', ['messages' => Auth::user()->messages()])
                 @endif
             </ul>
@@ -46,6 +41,11 @@
                         </a>
 
                         <ul class="dropdown-menu" role="menu">
+                            @if(Auth::check())
+                                @if(Auth::user()->isAdmin())
+                                    <li><a href="/admin/users">admin</a></li>
+                                @endif
+                            @endif
                             <li>
                                 <a href="{{ url('/logout') }}"
                                    onclick="event.preventDefault();

@@ -16,7 +16,7 @@
 
         <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.css" rel="stylesheet">
         
-        <script src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjoRcPBswdva5ObnziiS_1MuNzGNrQqHg&libraries=places"></script>
 
         <style>
             body {
