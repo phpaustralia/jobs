@@ -5,6 +5,7 @@
             <li><a href="/admin/roles">Roles</a></li>
             <li><a href="/admin/users">Users</a></li>
             <li><a href="/admin/files">Files</a></li>
+            <li><a href="/admin/tags">Tags</a></li>
         </ul>
 
     </div>

@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 
 @section('content')
-   <div class="container">
+
        <div class="row">
            <h1>Create Role</h1>
        </div>
@@ -19,7 +19,6 @@
                </form>
            </div>
        </div>
-   </div>
 @stop
 
 @section('scripts')
