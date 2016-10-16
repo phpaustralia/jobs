@@ -9,4 +9,6 @@ Route::group(['namespace' => 'API\V1', 'prefix' => '/v1'], function () {
     Route::get('/jobs/owned', 'JobsController@owned');
 
     Route::get('/jobs/search', 'JobsController@search');
+
+    Route::get('tags', 'TagsController@index');
 });

@@ -43,12 +43,16 @@ Route::resource('/files', 'FilesController');
 
 Route::group([
 //    'namespace' => 'Admin', 
-    'prefix' => '/admin'], function () {
+    'prefix' => '/admin',
+    'middleware' => ['admin']
+], function () {
     Route::resource('/roles', 'RolesController');
-    
+
     Route::resource('/users', 'UsersController');
-    
+
     Route::resource('/files', 'FilesController');
+
+    Route::resource('/tags', 'TagsController');
 });
 
 Route::resource('/comments', 'CommentController');

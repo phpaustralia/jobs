@@ -19,7 +19,7 @@ class TagsTest extends TestCase
         $this->faker = Faker\Factory::create();
     }
 
-    public function indexTest()
+    public function testIndex()
     {
         $tags = factory(App\Tag::class, 2)->create();
 
@@ -29,7 +29,7 @@ class TagsTest extends TestCase
             ->see($tags[1]->name);
     }
 
-    public function showTest()
+    public function testShow()
     {
         $tag = factory(App\Tag::class)->create();
         $this->actingAs($this->admin)
@@ -37,83 +37,76 @@ class TagsTest extends TestCase
             ->see($tag->name);
     }
 
-    public function createTest()
+    public function testCreate()
     {
         $name = $this->faker->word;
 
         $description = $this->faker->sentence();
 
-        $this->visit('/admin/tags/create')
+        $this->actingAs($this->admin)
+            ->visit('/admin/tags/create')
             ->type($name, 'name')
             ->type($description, 'description')
-            ->press('create')
+            ->press('Create')
             ->seeInDatabase('tags', ['name' => $name, 'description' => $description]);
     }
 
-    public function editTest()
+    public function testEdit()
     {
         $tag = factory(App\Tag::class)->create();
 
         $name = $this->faker->word;
 
+        $description = $this->faker->sentence;
+
         $this->actingAs($this->admin)
             ->visit("/admin/tags/$tag->id/edit")
             ->type($name, 'name')
+            ->type($description, 'description')
             ->press('update')
-            ->seeInDatabase('tags', ['id' => $tag->id, 'name' => $name]);
+            ->seeInDatabase('tags', ['id' => $tag->id, 'name' => $name, 'description' => $description]);
     }
 
-    public function deleteTest()
+    public function testDelete()
     {
         $tag = factory(App\Tag::class)->create();
 
-        $response = $this->call('DELETE', "/admin/tags/$tag->id");
+        $response = $this->actingAs($this->admin)
+            ->call('DELETE', "/admin/tags/$tag->id");
 
-        $this->assertEquals(200, $response->getStatusCode());
+        $this->assertRedirectedTo("/admin/tags");
 
         $this->dontSeeInDatabase('tags', ['id' => $tag->id]);
     }
 
-    public function APIIndexTest()
+    public function testAPIIndex()
     {
         $tags = factory(App\Tag::class, 3)->create();
 
         $this->json('GET', "/api/v1/tags")
             ->seeJson([
                 'data' => [
-                    [
-                        'name' => $tags[0]->name
-                    ],
-                    [
-                        'name' => $tags[1]->name
-                    ],
-                    [
-                        'name' => $tags[2]->name
-                    ],
+                    $tags[0]->toArray(),
+                    $tags[1]->toArray(),
+                     $tags[2]->toArray()
                 ]
             ]);
     }
 
-    public function APISearchTest()
+    public function testAPISearch()
     {
         $tags = factory(App\Tag::class, 3)->create();
 
         $this->json('GET', "/api/v1/tags?q={$tags[0]->name}")
             ->seeJson([
                 'data' => [
-                    [
-                        'name' => $tags[0]->name
-                    ]
+                    $tags[0]->toArray()
                 ]
             ])
             ->dontSeeJson([
                 'data' => [
-                    [
-                        'name' => $tags[1]->name
-                    ],
-                    [
-                        'name' => $tags[2]->name
-                    ],
+                    $tags[1]->toArray(),
+                    $tags[2]->toArray()
                 ]
             ]);
     }
