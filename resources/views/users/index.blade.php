@@ -18,7 +18,7 @@
                 <td>
                     <a href="/users/{{$user->id}}" class="btn btn-primary">view</a>
                     <a href="/users/{{$user->id}}/edit" class="btn btn-success">edit</a>
-                    <form action="/users/{{$user->id}}" method="user" style="display: inline;">
+                    <form action="/users/{{$user->id}}" method="POST" style="display: inline;">
                         {{csrf_field()}}
                         {{method_field('DELETE')}}
                         <button class="btn btn-danger" type="submit">
