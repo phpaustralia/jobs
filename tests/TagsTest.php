@@ -48,7 +48,10 @@ class TagsTest extends TestCase
             ->type($name, 'name')
             ->type($description, 'description')
             ->press('Create')
-            ->seeInDatabase('tags', ['name' => $name, 'description' => $description]);
+            ->seeInDatabase('tags', [
+                'name' => $name, 
+                'description' => $description
+            ]);
     }
 
     public function testEdit()
@@ -64,7 +67,11 @@ class TagsTest extends TestCase
             ->type($name, 'name')
             ->type($description, 'description')
             ->press('update')
-            ->seeInDatabase('tags', ['id' => $tag->id, 'name' => $name, 'description' => $description]);
+            ->seeInDatabase('tags', [
+                'id' => $tag->id, 
+                'name' => $name, 
+                'description' => $description
+            ]);
     }
 
     public function testDelete()

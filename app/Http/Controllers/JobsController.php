@@ -55,7 +55,7 @@ class JobsController extends Controller
      */
     public function store(Request $request)
     {
-        $input = $request->all();
+        $input = collect($request->all());
 
 //        dd($input);
 
@@ -75,7 +75,9 @@ class JobsController extends Controller
 
         $job->save();
 
-        $job->tags()->sync($input['tags']);
+        if ($input->has('tags')) {
+            $job->tags()->sync($input['tags']);
+        }
         
         Event::fire(new JobCreated($job));
         

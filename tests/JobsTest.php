@@ -83,7 +83,10 @@ class JobsTest extends TestCase
 
         $this->actingAs($user)
             ->post('/jobs', $data)
-            ->seeInDatabase('jobs', ['title' => $job->title, 'description' => $job->description]);
+            ->seeInDatabase('jobs', [
+                'title' => $job->title,
+                'description' => $job->description
+            ]);
     }
 
     /**
@@ -103,7 +106,11 @@ class JobsTest extends TestCase
         $this->actingAs($user)
             ->put("/jobs/{$job->id}", $newJob->toArray());
 
-        $this->seeInDatabase('jobs', ['id' => $job->id, 'title' => $newJob->title, 'description' => $newJob->description]);
+        $this->seeInDatabase('jobs', [
+            'id' => $job->id,
+            'title' => $newJob->title,
+            'description' => $newJob->description
+        ]);
     }
 
     /**
@@ -127,7 +134,11 @@ class JobsTest extends TestCase
 
         $this->assertResponseStatus(403);
 
-//        $this->seeInDatabase('jobs', ['id' => $job->id, 'title' => $newJob->title, 'description' => $newJob->description]);
+        // $this->seeInDatabase('jobs', [
+        //     'id' => $job->id, 
+        //     'title' => $newJob->title, 
+        //     'description' => $newJob->description
+        //     ]);
     }
 
     /**
@@ -149,7 +160,11 @@ class JobsTest extends TestCase
         $this->actingAs($admin)
             ->put("/jobs/{$job->id}", $newJob->toArray());
 
-        $this->seeInDatabase('jobs', ['id' => $job->id, 'title' => $newJob->title, 'description' => $newJob->description]);
+        $this->seeInDatabase('jobs', [
+            'id' => $job->id,
+            'title' => $newJob->title,
+            'description' => $newJob->description
+        ]);
     }
 
     /**

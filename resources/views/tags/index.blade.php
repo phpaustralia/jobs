@@ -20,7 +20,7 @@
                 <td>
                     <a href="/admin/tags/{{$tag->id}}" class="btn btn-primary">view</a>
                     <a href="/admin/tags/{{$tag->id}}/edit" class="btn btn-success">edit</a>
-                    <form action="/admin/tags/{{$tag->id}}">
+                    <form action="/admin/tags/{{$tag->id}}" style="display: inline;">
                         {{ csrf_field() }}
                         {{ method_field('DELETE') }}
                         <button class="btn btn-danger" type="submit">delete</button>
