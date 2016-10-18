@@ -21,6 +21,9 @@
 
                     <div class="media-body">
                         <h4 class="media-heading">{{job.title}}</h4>
+                        <div class="pull-right" >
+                            <button v-for="tag in job.tags" class="btn btn-default disabled">{{tag.name}}</button>
+                        </div>
                     </div>
                 </a>
             </div>

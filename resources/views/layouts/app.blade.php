@@ -18,6 +18,8 @@
         
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjoRcPBswdva5ObnziiS_1MuNzGNrQqHg&libraries=places"></script>
 
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+
         <style>
             body {
                 font-family: 'Lato';
@@ -40,6 +42,8 @@
                 <!-- JavaScripts -->
         <script src="/js/app.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
         {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
         @yield('scripts')
     </body>

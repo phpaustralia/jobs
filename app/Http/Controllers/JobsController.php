@@ -74,6 +74,8 @@ class JobsController extends Controller
         $job->user_id = Auth::user()->id;
 
         $job->save();
+
+        $job->tags()->sync($input['tags']);
         
         Event::fire(new JobCreated($job));
         

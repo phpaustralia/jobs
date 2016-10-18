@@ -18,6 +18,14 @@
                         <input type="text" name="title" class="form-control" value="{{$job->title}}">
                     </div>
                     <div class="form-group">
+                        <label for="tags[]">Tags</label>
+                        <select multiple="multiple" name="tags[]" class="job-tags form-control">
+                            @foreach($tags as $tag)
+                                <option {{ $job->tags->map(function($tag) {return $tag->id; })->contains($tag->id) ? 'selected' : '' }} value="{{$tag->id}}">{{$tag->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label for="title">Description</label>
                         <input type="text" id="summernote" name="description" class="form-control" value="{{$job->description}}">
                     </div>
@@ -36,6 +44,7 @@
     <script>
         $(document).ready(function() {
             $('#summernote').summernote();
+            $(".job-tags").select2();
         });
 
     </script>

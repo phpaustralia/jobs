@@ -22,6 +22,15 @@
                        <input type="text" name="title" class="form-control">
                    </div>
                    <div class="form-group">
+                       <label for="tags[]">Tags</label>
+                       <select multiple="multiple" name="tags[]" class="job-tags form-control">
+                           @foreach($tags as $tag)
+                               <option value="{{$tag->id}}">{{$tag->name}}</option>
+                           @endforeach
+                       </select>
+                   </div>
+
+                   <div class="form-group">
                        <label for="title">Description</label>
                        <textarea  name="description" class="form-control" id="summernote" ></textarea>
                    </div>
@@ -64,6 +73,10 @@
 
             });
         }
+
+        $(document).ready(function() {
+            $(".job-tags").select2();
+        });
     </script>
 
 @endsection

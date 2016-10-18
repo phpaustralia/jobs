@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\PHPAustralia\Docs;
+use App\Tag;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -19,6 +20,14 @@ class ViewComposerServiceProvider extends ServiceProvider
         // Using Closure based composers...
         View::composer('layouts.footer', function ($view) {
             $view->docs = Docs::all();
+        });
+
+        View::composer('jobs.create', function ($view) {
+            $view->tags = Tag::all();
+        });
+
+        View::composer('jobs.edit', function ($view) {
+            $view->tags = Tag::all();
         });
     }
 
